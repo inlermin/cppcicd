@@ -12,4 +12,7 @@ deploy:
   provider: script
   skip_cleanup: true
   script:
-    - curl -T cppcicd-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -uinlermin:$BINTRAY_API_KEY "https://api.bintray.com/content/inlermin/cppcicd/cppcicd/$TRAVIS_BUILD_NUMBER/cppcicd-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
+    -curl -T cppcicd-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb
+    -uinlermin:$BINTRAY_API_KEY "https://api.bintray.com/content/inlermin/cppcicd/cppcicd/
+    $TRAVIS_BUILD_NUMBER/cppcicd-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;
+    deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
