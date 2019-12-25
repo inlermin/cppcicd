@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.2)
 
 
-#project(cppcicd VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
-project(cppcicd VERSION 0.0.1)
+project(cppcicd VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
+#project(cppcicd VERSION 0.0.1)
 
 find_package(Boost COMPONENTS unit_test_framework REQUIRED)
 
