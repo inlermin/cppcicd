@@ -29,9 +29,14 @@ set_target_properties(test_version PROPERTIES
         INCLUDE_DIRECTORIES ${Boost_INCLUDE_DIR}
         )
 
+set_target_properties(g_test_version PROPERTIES
+        INCLUDE_DIRECTORIES ${GTEST_INCLUDE_DIR}
+        )
+
 target_link_libraries(cppcicd_cli PRIVATE
         cppcicd
         )
+
 target_link_libraries(test_version
         ${Boost_LIBRARIES}
         cppcicd
