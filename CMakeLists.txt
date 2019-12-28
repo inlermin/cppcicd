@@ -36,10 +36,7 @@ target_link_libraries(test_version
         cppcicd
         )
 
-target_link_libraries(g_test_version
-        PRIVATE
-        GTest::GTest
-        )
+target_link_libraries(g_test_version GTest::GTest GTest::Main)
 
 if(MSVC)
     target_compile_options(cppcicd_cli PRIVATE
@@ -51,6 +48,9 @@ if(MSVC)
     target_compile_options(test_version PRIVATE
             /W4
             )
+    target_compile_options(g_test_version PRIVATE
+            /W4
+            )
 else ()
     target_compile_options(cppcicd_cli PRIVATE
             -Wall -Wextra -pedantic -Werror
@@ -59,6 +59,9 @@ else ()
             -Wall -Wextra -pedantic -Werror
             )
     target_compile_options(test_version PRIVATE
+            -Wall -Wextra -pedantic -Werror
+            )
+    target_compile_options(g_test_version PRIVATE
             -Wall -Wextra -pedantic -Werror
             )
 endif()
@@ -79,5 +82,6 @@ include(CPack)
 enable_testing()
 
 add_test(test_version test_version)
+add_test(g_test_version g_test_version)
 
 
