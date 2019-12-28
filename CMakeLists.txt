@@ -15,6 +15,7 @@ configure_file(version.h.in version.h)
 add_executable(cppcicd_cli main.cpp)
 add_library(cppcicd lib.cpp)
 add_executable(test_version test_version.cpp)
+
 add_executable(g_test_version g_test_version.cpp)
 
 set_target_properties(cppcicd_cli cppcicd test_version PROPERTIES
@@ -36,7 +37,7 @@ target_link_libraries(test_version
         cppcicd
         )
 
-target_link_libraries(g_test_version GTest::GTest GTest::Main)
+target_link_libraries(g_test_version ${GTEST_LIBRARIES} ${GTEST_MAIN_LIBRARIES} pthread)
 
 if(MSVC)
     target_compile_options(cppcicd_cli PRIVATE
