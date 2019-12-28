@@ -1,15 +1,21 @@
 cmake_minimum_required(VERSION 3.2)
 
-
-project(cppcicd VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
+if(TRAVIS_BUILD_NUMBER)
+    project(cppcicd VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
+else()
+    project(cppcicd VERSION 0.0.1)
+endif()
 
 find_package(Boost COMPONENTS unit_test_framework REQUIRED)
+
+find_package(GTest REQUIRED)
 
 configure_file(version.h.in version.h)
 
 add_executable(cppcicd_cli main.cpp)
 add_library(cppcicd lib.cpp)
 add_executable(test_version test_version.cpp)
+add_executable(g_test_version g_test_version.cpp)
 
 set_target_properties(cppcicd_cli cppcicd test_version PROPERTIES
         CXX_STANDARD 14
@@ -28,6 +34,11 @@ target_link_libraries(cppcicd_cli PRIVATE
 target_link_libraries(test_version
         ${Boost_LIBRARIES}
         cppcicd
+        )
+
+target_link_libraries(g_test_version
+        PRIVATE
+        GTest::GTest
         )
 
 if(MSVC)
