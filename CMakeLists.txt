@@ -39,7 +39,7 @@ target_link_libraries(test_version
         )
 
 include_directories(${GTEST_INCLUDE_DIR})
-target_link_libraries(g_test_version ${GTEST_LIBRARIES})
+target_link_libraries(g_test_version ${GTEST_LIBRARIES} pthread)
 
 if(MSVC)
     target_compile_options(cppcicd_cli PRIVATE
