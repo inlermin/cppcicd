@@ -1,10 +1,10 @@
 language: cpp
 before_script:
-  - sudo apt-get install libgtest-dev libboost-test-dev -y
-  - sudo apt-get install cmake
+  - sudo apt-get install cmake libgtest-dev libboost-test-dev -y
   - cd /usr/src/gtest
   - sudo cmake CMakeLists.txt
   - sudo make
+  - sudo cp *.a /usr/lib
   - cd -
   - echo "deb http://archive.ubuntu.com/ubuntu xenial main universe" | sudo tee -a /etc/apt/sources.list
   - sudo apt-get update -qq
