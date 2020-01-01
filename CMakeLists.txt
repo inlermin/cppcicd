@@ -8,9 +8,7 @@ endif()
 
 find_package(Boost COMPONENTS unit_test_framework REQUIRED)
 
-if(MSVC)
-    find_package(Threads REQUIRED)
-endif()
+find_package(Threads REQUIRED)
 
 find_package(GTest REQUIRED)
 
@@ -53,11 +51,7 @@ target_link_libraries(test_version
         )
 
 include_directories(${GTEST_INCLUDE_DIR})
-if(MSVC)
-    target_link_libraries(g_test_version ${GTEST_LIBRARIES} ${GTEST_MAIN_LIBRARIES} Threads::Threads)
-else ()
-    target_link_libraries(g_test_version ${GTEST_LIBRARIES} ${GTEST_MAIN_LIBRARIES} pthread)
-endif()
+target_link_libraries(g_test_version ${GTEST_LIBRARIES} ${GTEST_MAIN_LIBRARIES} Threads::Threads)
 
 if(MSVC)
     set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
